@@ -63,7 +63,13 @@
                (typeof window !== 'undefined' ? '&timestamp=' + new Date().getTime() : '');
          }
 
-         var xhr = new XMLHttpRequest();
+         var xhr;
+         if (typeof XMLHttpRequest === 'undefined') {
+            xhr = new window.XMLHttpRequest();
+         }
+         else {
+            xhr = new XMLHttpRequest();
+         }
 
          xhr.open(method, getURL(), !sync);
 
